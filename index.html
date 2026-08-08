@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Aleksandar Zaklan</title>
+<meta name="description" content="Aleksandar Zaklan is a professor of economics at the University of Rostock, working on environmental and energy economics, climate policy instruments, and green finance.">
+<meta property="og:title" content="Aleksandar Zaklan">
+<meta property="og:description" content="Professor of economics at the University of Rostock. Environmental and energy economics, climate policy, green finance.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://azaklan.github.io/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --paper:   #F7F8F6;
+  --ink:     #16191A;
+  --muted:   #6E7573;
+  --rule:    #DFE3DF;
+  --accent:  #24503F;
+  --accent-soft: rgba(36, 80, 63, .10);
+
+  --rail: 8.5rem;
+  --measure: 36rem;
+  --gutter: 2.25rem;
+
+  --sans:  'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --mono:  'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:  #14171A;
+    --ink:    #E6E9E6;
+    --muted:  #8B9490;
+    --rule:   #272C2E;
+    --accent: #8ECDAF;
+    --accent-soft: rgba(142, 205, 175, .13);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  max-width: calc(var(--rail) + var(--gutter) + var(--measure));
+  margin: 0 auto;
+  padding: 4.5rem 1.75rem 6rem;
+}
+
+/* ---------- links ---------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  padding-bottom: 1px;
+  transition: background-size .18s ease, color .18s ease;
+}
+a:hover { color: var(--accent); background-size: 100% 2px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* ---------- masthead ---------- */
+.masthead {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: flex-start;
+  gap: 1.5rem 2.5rem;
+  margin-bottom: 2.25rem;
+}
+.masthead-text { flex: 1 1 20rem; }
+
+/* PHOTO: upload your headshot to the repo as photo.jpg.
+   If you'd rather have no photo, delete the <img> tag in the HTML below. */
+.portrait {
+  width: 150px;
+  height: 185px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  filter: saturate(.9);
+}
+
+.name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2.1rem, 6vw, 2.9rem);
+  letter-spacing: -.032em;
+  line-height: 1.04;
+  margin: 0 0 .85rem;
+}
+
+.role {
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 1.5rem;
+}
+.role strong { color: var(--ink); font-weight: 600; }
+
+.channels {
+  font-family: var(--mono);
+  font-size: .78rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.channels a { padding-bottom: 2px; }
+
+/* ---------- jump nav ---------- */
+.jump {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  padding: .9rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3.25rem;
+}
+.jump a { color: var(--muted); background-image: none; padding-bottom: 0; }
+.jump a:hover { color: var(--accent); }
+
+/* ---------- section + entry grid ---------- */
+.section,
+.entry {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: var(--gutter);
+}
+
+.section { margin-bottom: 3.5rem; scroll-margin-top: 1.5rem; }
+
+.section-label {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: .38rem 0 0;
+  align-self: start;
+}
+
+.section-body { grid-column: 2; }
+.section-body > :first-child { margin-top: 0; }
+.section-body > :last-child { margin-bottom: 0; }
+.section-body p { margin: 0 0 1.05rem; }
+
+.interests { margin: 0 0 1.05rem; padding-left: 1.1rem; }
+.interests li { margin-bottom: .35rem; }
+.interests li::marker { color: var(--accent); }
+
+/* Lists span the whole section grid so every entry's vintage lands in the
+   same rail as the section label — one continuous metadata column. */
+.works {
+  grid-column: 1 / -1;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--rule);
+}
+.entry:first-child { border-top: 0; padding-top: 0; }
+
+/* the rail: year + venue. this is the whole idea of the page. */
+.vintage {
+  font-family: var(--mono);
+  font-size: .75rem;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  padding-top: .28rem;
+}
+.vintage .year { display: block; color: var(--ink); }
+.vintage .status {
+  display: block;
+  margin-top: .12rem;
+  font-size: .68rem;
+  letter-spacing: .03em;
+  color: var(--accent);
+}
+
+.work-title {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 0 .25rem;
+}
+
+.byline {
+  font-size: .95rem;
+  font-style: italic;
+  color: var(--muted);
+  margin: 0 0 .5rem;
+}
+.byline:last-child { margin-bottom: 0; }
+
+.venue { font-size: .95rem; color: var(--muted); margin: 0; }
+
+/* ---------- compact bibliographic list (policy papers) ---------- */
+.works.compact > .entry { padding: 1.05rem 0; }
+.ref { margin: 0; font-size: 1rem; line-height: 1.5; }
+.ref > a { font-weight: 600; }
+.ref-meta { color: var(--muted); font-size: .93rem; }
+
+/* Declared after the list-specific paddings above so it actually wins. */
+.works > .entry:last-child { padding-bottom: 0; }
+
+/* ---------- footer ---------- */
+.colophon {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  column-gap: var(--gutter);
+  margin-top: 3.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: .72rem;
+  color: var(--muted);
+}
+.colophon p { grid-column: 2; margin: 0; }
+
+/* ---------- mobile: rail folds up above the content ---------- */
+@media (max-width: 640px) {
+  .page { padding: 2.75rem 1.35rem 4rem; }
+  .section, .entry, .colophon { grid-template-columns: 1fr; }
+  .section-body, .colophon p { grid-column: 1; }
+  .portrait { width: 130px; height: 160px; }
+
+  .section-label {
+    margin: 0 0 .9rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .vintage {
+    padding-top: 0;
+    margin-bottom: .45rem;
+    display: flex;
+    align-items: baseline;
+    gap: .6rem;
+  }
+  .vintage .year, .vintage .status { display: inline; margin: 0; }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+
+  <!-- ============================================================
+       MASTHEAD
+       ============================================================ -->
+  <header class="masthead">
+    <div class="masthead-text">
+      <h1 class="name">Aleksandar Zaklan</h1>
+      <p class="role">
+        <strong>Professor of Economics</strong>, <a href="https://www.vwl.uni-rostock.de/personen/professuren-i/angewandte-wirtschaftsforschung-prof-dr-aleksandar-zaklan/team/prof-dr-aleksandar-zaklan/">University of Rostock</a>
+      </p>
+      <ul class="channels">
+        <li><a href="mailto:aleksandar.zaklan@uni-rostock.de">aleksandar.zaklan@uni-rostock.de</a></li>
+        <li><a href="cv_zaklan.pdf">CV (PDF)</a></li>
+        <li><a href="https://scholar.google.de/citations?user=eZ-GZakAAAAJ&amp;hl=en">Google Scholar</a></li>
+        <li><a href="https://ideas.repec.org/e/pza179.html">IDEAS/RePEc</a></li>
+      </ul>
+    </div>
+    <!-- Upload your headshot to the repo as photo.jpg, or delete this line.
+         If the file isn't there yet, the image simply hides itself. -->
+    <img class="portrait" src="photo.jpg" alt="Aleksandar Zaklan" onerror="this.style.display='none'">
+  </header>
+
+  <nav class="jump">
+    <a href="#about">About</a>
+    <a href="#progress">Research</a>
+    <a href="#policy">Policy papers</a>
+  </nav>
+
+  <!-- ============================================================
+       ABOUT
+       ============================================================ -->
+  <section class="section" id="about">
+    <h2 class="section-label">About</h2>
+    <div class="section-body">
+      <p>I am a professor of economics at the <a href="https://www.vwl.uni-rostock.de/personen/professuren-i/angewandte-wirtschaftsforschung-prof-dr-aleksandar-zaklan/team/prof-dr-aleksandar-zaklan/">University of Rostock</a>, a member of the Verein für Socialpolitik's <a href="https://er-economics.committee.socialpolitik.de/">Standing Field Committee Environmental and Resource Economics</a>, and a senior fellow at the <a href="https://www.bccp-berlin.de/">Berlin Centre for Consumer Policies</a>.</p>
+      <p>Previously I was a policy advisor at the <a href="https://www.bmwk.de/Navigation/EN/Home/home.html">German Federal Ministry for Economic Affairs and Climate Action</a>, a senior researcher at <a href="https://www.diw.de/en">DIW Berlin</a>, a research associate at the <a href="https://berlinschoolofeconomics.eu/home">Berlin School of Economics</a>, and a Jean Monnet Fellow at the <a href="https://www.eui.eu/en/home">European University Institute</a>.</p>
+      <p>My current research interests are:</p>
+      <ul class="interests">
+        <li>Assessing impacts of policy instruments designed to mitigate environmental externalities.</li>
+        <li>Understanding impacts of pollution on subjective and objective well-being outcomes.</li>
+        <li>Analyzing potentials of financial markets as conduits for environmental policy ("green finance").</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WORK IN PROGRESS
+       ============================================================ -->
+  <section class="section" id="progress">
+    <h2 class="section-label">Work in progress</h2>
+    <ol class="works">
+
+      <li class="entry">
+        <div class="vintage"><span class="year">May 2026</span><span class="status">Working paper</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://edoc.unibas.ch/server/api/core/bitstreams/c6b5931e-0ae4-4659-96e2-eb5e1b2e1467/content">Cost Pass-Through in European Power Generation</a></h3>
+          <p class="byline">with Jan Abrell</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">—</span></div>
+        <div>
+          <h3 class="work-title">Carbon Cost Pass-Through in European Aviation</h3>
+          <p class="byline">with Xavier Fageda, Adrián Santonja and Jordi Teixidó</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">—</span></div>
+        <div>
+          <h3 class="work-title">Congestion Pricing and Well-Being</h3>
+          <p class="byline">with Philipp Lorscheider</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">Mar 2021</span><span class="status">Working paper</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://www.econstor.eu/bitstream/10419/233049/1/1754731600.pdf">The Impact of ECB Corporate Sector Purchases on European Green Bonds</a></h3>
+          <p class="byline">with Franziska Bremus, Fangfang Qiu and Franziska Schütze</p>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ============================================================
+       PEER-REVIEWED PUBLICATIONS
+       ============================================================ -->
+  <section class="section" id="published">
+    <h2 class="section-label">Peer-reviewed</h2>
+    <ol class="works">
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2025</span><span class="status">ERE</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1007/s10640-024-00929-z">Effectiveness and Heterogeneous Effects of Purchase Grants for Electric Vehicles: Evidence from Germany</a></h3>
+          <p class="byline">with Peter Haan and Adrián Santonja</p>
+          <p class="venue"><em>Environmental and Resource Economics</em> 88, 185–223.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2023</span><span class="status">J. Public Econ.</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1016/j.jpubeco.2023.105014">The Air Quality and Well-Being Effects of Low Emission Zones</a></h3>
+          <p class="byline">with Luis Sarmiento and Nicole Wägner</p>
+          <p class="venue"><em>Journal of Public Economics</em> 227, 105014.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2023</span><span class="status">AEJ: Policy</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1257/pol.20210028">Coase and Cap-and-Trade: Evidence on the Independence Property from the European Carbon Market</a></h3>
+          <p class="venue"><em>American Economic Journal: Economic Policy</em> 15(2), 526–558.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2021</span><span class="status">Rev. Acc. Stud.</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1007/s11142-021-09611-x">The Impact of Carbon Disclosure Mandates on Emissions and Financial Operating Performance</a></h3>
+          <p class="byline">with Benedikt Downar, Jürgen Ernstberger, Stefan Reichelstein and Sebastian Schwenen</p>
+          <p class="venue"><em>Review of Accounting Studies</em> 26, 1137–1175.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2021</span><span class="status">Climate Policy</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1080/14693062.2021.1878999">The EU ETS to 2030 and Beyond: Adjusting the Cap in Light of the 1.5C Target and Current Energy Policies</a></h3>
+          <p class="byline">with Jakob Wachsmuth and Vicki Duscha</p>
+          <p class="venue"><em>Climate Policy</em> 21(6), 778–791.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2019</span><span class="status">JEEM</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1016/j.jeem.2018.11.004">Does the EU ETS Cause Carbon Leakage in European Manufacturing?</a></h3>
+          <p class="byline">with Helene Naegele</p>
+          <p class="venue"><em>Journal of Environmental Economics and Management</em> 93, 125–147.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2018</span><span class="status">Energy Journal</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://www.iaee.org/energyjournal/article/3184">Book Review: Research Handbook on Emissions Trading, by Stefan Weishaar (ed.)</a></h3>
+          <p class="venue"><em>The Energy Journal</em> 39(5).</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2016</span><span class="status">REEP</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1093/reep/rev014">The EU ETS: Ten Years and Counting</a></h3>
+          <p class="byline">with Denny Ellerman and Claudio Marcantonini</p>
+          <p class="venue"><em>Review of Environmental Economics and Policy</em> 10(1), 89–107.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2016</span><span class="status">Energy Econ.</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1016/j.eneco.2016.07.022">Stationarity Changes in Long-Run Energy Commodity Prices</a></h3>
+          <p class="byline">with Jan Abrell and Anne Neumann</p>
+          <p class="venue"><em>Energy Economics</em> 59, 96–103.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2012</span><span class="status">Energy Econ.</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1016/j.eneco.2011.03.001">The Globalization of Steam Coal Markets and the Role of Logistics: An Empirical Analysis</a></h3>
+          <p class="byline">with Astrid Cullman, Anne Neumann and Christian von Hirschhausen</p>
+          <p class="venue"><em>Energy Economics</em> 34(1), 105–116.</p>
+        </div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2011</span><span class="status">Rev. Finance</span></div>
+        <div>
+          <h3 class="work-title"><a href="https://doi.org/10.1093/rof/rfq016">The External Financing of Emerging Market Countries: Evidence from Two Waves of Financial Globalization</a></h3>
+          <p class="byline">with André Faria and Paolo Mauro</p>
+          <p class="venue"><em>Review of Finance</em> 15(1), 207–243.</p>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ============================================================
+       POLICY PAPERS — compact bibliographic list.
+       Selected; several in German.
+       ============================================================ -->
+  <section class="section" id="policy">
+    <h2 class="section-label">Policy papers</h2>
+    <div class="section-body">
+      <p style="margin:0; font-size:.95rem; color:var(--muted);">Selected; several in German.</p>
+    </div>
+    <ol class="works compact">
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2022</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_wb:2022-15-1">Kaufprämien für Elektro-Pkw verändern Zusammensetzung des deutschen Automarkts</a> <span class="ref-meta">with Peter Haan and Adrián Santonja di Fonzo. <em>DIW Wochenbericht</em> 89(15–16), 231–238.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2022</span><span class="status">UBA</span></div>
+        <div><p class="ref"><a href="https://www.umweltbundesamt.de/en/publikationen/strukturelle-weiterentwicklung-des-eu-ets-nach-2020">Strukturelle Weiterentwicklung des EU-ETS nach 2020 — Abschlussbericht</a> <span class="ref-meta">with Verena Graichen, Johanna Cludius, Vicki Duscha, Jakob Graichen, Markus Haller, Hauke Hermann, Friedhelm Keimeyer, Sascha Lehmann, Charlotte Loreck and Jakob Wachsmuth. <em>German Environmental Agency Climate Change</em> 18/2022.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2022</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_wb:2022-13-1">Umweltzonen verbessern Luftqualität und Gesundheit, verringern aber temporär Lebenszufriedenheit</a> <span class="ref-meta">with Luis Sarmiento and Nicole Wägner. <em>DIW Wochenbericht</em> 89(13), 203–211.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2021</span><span class="status">UBA</span></div>
+        <div><p class="ref"><a href="https://www.umweltbundesamt.de/sites/default/files/medien/5750/publikationen/2021-05-19_cc_39-2021_msr_review.pdf">Structural Supply Side Management in EU ETS: Reviewing the Market Stability Reserve</a> <span class="ref-meta">with Jakob Graichen, Verena Graichen, Hauke Hermann and Johanna Cludius. <em>German Environmental Agency Climate Change</em> 39/2021.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2021</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_wb:2021-22-1">EZB-Politik erleichtert Unternehmen Finanzierung am Markt grüner Anleihen</a> <span class="ref-meta">with Franziska Bremus and Franziska Schütze. <em>DIW Wochenbericht</em> 88(22), 367–375.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2020</span><span class="status">DIW WR</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_dwr:2020-26-1">EU ETS Cap Must and Can Be Reduced More Quickly</a> <span class="ref-meta">with Vicki Duscha, Claudia Gibis, Jakob Wachsmuth, Jan Weiß and Claudia Kemfert. <em>DIW Weekly Report</em> 10(26–27), 293–300.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2020</span><span class="status">UBA</span></div>
+        <div><p class="ref"><a href="https://www.umweltbundesamt.de/sites/default/files/medien/1410/publikationen/2020-01-28_climate-change_07-2020_implications_lts_ipcc_15_for_eu_ets_bf.pdf">EU ETS up to 2030: Adjusting the Cap in Light of the IPCC 1.5C Special Report and the Paris Agreement</a> <span class="ref-meta">with Jakob Wachsmuth and Vicki Duscha. <em>German Environmental Agency Climate Change</em> 07/2020.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2019</span><span class="status">DIW Vjh.</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.3790/vjh.88.2.5">Green Finance: The Macro Perspective — Editorial</a> <span class="ref-meta">with Claudia Kemfert, Dorothea Schäfer and Willi Semmler. <em>Vierteljahreshefte zur Wirtschaftsforschung</em> 88(2), 5–9.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2019</span><span class="status">DIW PK</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/203260">CO2-Bepreisung im Wärme- und Verkehrssektor: Diskussion von Wirkungen und alternativen Entlastungsoptionen</a> <span class="ref-meta">with Stefan Bach, Niklas Isaak, Claudia Kemfert, Uwe Kunert, Wolf-Peter Schill, Sophie Schmalz and Nicole Wägner. <em>DIW Politikberatung Kompakt</em> 140/2019.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2019</span><span class="status">UBA</span></div>
+        <div><p class="ref"><a href="https://www.umweltbundesamt.de/sites/default/files/medien/1410/publikationen/2019-08-21_climate-change_29-2019_ets-7.pdf">Evaluierung und Weiterentwicklung des EU-Emissionshandels aus ökonomischer Perspektive für die Zeit nach 2020 (EU-ETS-7)</a> <span class="ref-meta">with Verena Graichen, Hannah Förster, Jakob Graichen, Sean Healy, Julia Repenning, Katja Schumacher, Vicki Duscha, Nele Friedrichsen, Sascha Lehmann, Gizem Erdogmus, Ines Haug, Solbin Kim and Jochen Diekmann. <em>Umweltbundesamt Climate Change</em> 29/2019.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2019</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_wb:2019-13-1">Umweltwirkungen der Ökosteuer begrenzt, CO2-Bepreisung der nächste Schritt</a> <span class="ref-meta">with Claudia Kemfert, Wolf-Peter Schill and Nicole Wägner. <em>DIW Wochenbericht</em> 86(13), 215–221.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2018</span><span class="status">DIW WR</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_dwr:2018-50-2">Global Economy and the Euro Area: Uncertainty Weighs on Trade and Investment</a> <span class="ref-meta">with Claus Michelsen, Dawud Ansari, Guido Baldi, Geraldine Dany-Knedlik, Hella Engerer, Stefan Gebauer and Malte Rieth. <em>DIW Weekly Report</em> 8(50/51/52), 506–508.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2018</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="https://doi.org/10.18723/diw_wb:2018-49-3">Rohölmarkt: Iran-Sanktionen dürften zu moderatem Preisanstieg führen</a> <span class="ref-meta">with Dawud Ansari and Claudia Kemfert. <em>DIW Wochenbericht</em> 85(49), 1053–1059.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2018</span><span class="status">DIW Roundup</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/180642">Linking Cap-and-Trade Systems</a> <span class="ref-meta">with Katharina Erdmann. <em>DIW Roundup</em> 123.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2017</span><span class="status">DIW EB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/172953">Crude Oil: Market Trends and Simulations Point toward Stable Equilibrium</a> <span class="ref-meta">with Dawud Ansari and Claudia Kemfert. <em>DIW Economic Bulletin</em> 7(51–52), 567–573.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2016</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/140664">Rohölmarkt: US-amerikanisches Schieferöl schwächt Marktmacht der OPEC</a> <span class="ref-meta">with Claudia Kemfert. <em>DIW Wochenbericht</em> 83(19), 429–433.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2016</span><span class="status">DIW EB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/129758">EU Emissions Trading: Distinctive Behavior of Small Companies</a> <span class="ref-meta">with Helene Naegele. <em>DIW Economic Bulletin</em> 6(9–10), 117–124.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2015</span><span class="status">DIW Roundup</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/117370">Europe's Mechanism for Countering the Risk of Carbon Leakage</a> <span class="ref-meta">with Bente Bauer. <em>DIW Roundup</em> 72.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2015</span><span class="status">GD</span></div>
+        <div><p class="ref"><a href="https://gemeinschaftsdiagnose.de/wp-content/uploads/2017/02/GD15F_lang.pdf">Kräftiger Aufschwung dank günstigem Öl und schwachem Euro</a> <span class="ref-meta">part of consortium led by DIW, ifo, IWH and RWI. <em>Gemeinschaftsdiagnose</em> Frühjahr 2015.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2015</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/108859">Schieferöl sorgt für niedrige Preise im Prognosezeitraum</a> <span class="ref-meta">with DIW's Forecasting and Economic Policy Department. <em>DIW Wochenbericht</em> 82(11), 219–247.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2013</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/69312">WTI schert aus: Brent im Moment alleiniger globaler Benchmarkpreis für Rohöl</a> <span class="ref-meta">with DIW's Forecasting and Economic Policy Department. <em>DIW Wochenbericht</em> 80(1–2), 3–48.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2012</span><span class="status">UBA</span></div>
+        <div><p class="ref"><a href="https://www.umweltbundesamt.de/sites/default/files/medien/461/publikationen/4300.pdf">Price Determinants of the European Carbon Market and Interactions with Energy Markets</a> <span class="ref-meta">with Johanna Cludius, Jochen Diekmann, Felix Matthes, Joachim Schleich and Katja Schumacher. <em>Umweltbundesamt Climate Change</em> 11/2012.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2011</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/152138">Entwicklung der Erdölmärkte: Reservekapazität im Nahen Osten wirkt derzeit stabilisierend</a> <span class="ref-meta">with Kerstin Bernoth, Daniel Huppmann, Claudia Kemfert and Christian von Hirschhausen. <em>DIW Wochenbericht</em> 78(21), 3–9.</span></p></div>
+      </li>
+
+      <li class="entry">
+        <div class="vintage"><span class="year">2011</span><span class="status">DIW WB</span></div>
+        <div><p class="ref"><a href="http://hdl.handle.net/10419/152131">Welt-Metallmärkte: Steigende Preise bei hoher Marktkonzentration</a> <span class="ref-meta">with Anne Neumann and Christian von Hirschhausen. <em>DIW Wochenbericht</em> 78(19), 11–14.</span></p></div>
+      </li>
+
+    </ol>
+  </section>
+
+  <footer class="colophon">
+    <!-- Update this date whenever you change the page. -->
+    <p>Last updated August 2026</p>
+  </footer>
+
+</main>
+</body>
+</html>

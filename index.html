@@ -132,23 +132,75 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
 }
 .channels a { padding-bottom: 2px; }
 
-/* ---------- jump nav ---------- */
+/* ---------- jump nav: sticky on desktop, hamburger on mobile ---------- */
 .jump {
+  position: sticky;
+  top: 0;
+  z-index: 50;
   font-family: var(--mono);
   font-size: .7rem;
   font-weight: 500;
   letter-spacing: .13em;
   text-transform: uppercase;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem 1.5rem;
-  padding: .9rem 0;
+  background: var(--paper);
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   margin-bottom: 3.25rem;
+  /* Bleed the background to the window edges so text scrolling underneath
+     doesn't peek out at the sides. clip-path keeps the spread horizontal. */
+  box-shadow: 0 0 0 100vmax var(--paper);
+  clip-path: inset(0 -100vmax);
 }
+
+.jump-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 2.9rem;
+}
+
+.jump-links { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
 .jump a { color: var(--muted); background-image: none; padding-bottom: 0; }
 .jump a:hover { color: var(--accent); }
+.jump a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* Brand and hamburger are mobile-only; hidden on desktop. */
+.jump-brand,
+.jump-toggle { display: none; }
+
+.jump-brand {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: .82rem;
+  letter-spacing: .01em;
+  text-transform: none;
+  color: var(--ink);
+}
+
+.jump-toggle {
+  appearance: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  padding: .55rem;
+  margin-right: -.55rem;
+  line-height: 0;
+}
+.jump-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.jump-toggle span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--ink);
+  transition: transform .22s ease, opacity .18s ease;
+}
+.jump-toggle span + span { margin-top: 5px; }
+
+/* Three bars morph into an X when the panel is open. */
+.jump-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.jump-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.jump-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 /* ---------- section + entry grid ---------- */
 .section,
@@ -231,6 +283,40 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
 
 .venue { font-size: .95rem; color: var(--muted); margin: 0; }
 
+/* ---------- collapsible abstracts ---------- */
+.abstract { margin: .7rem 0 0; }
+.abstract > summary {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .15rem 0;
+}
+.abstract > summary::-webkit-details-marker { display: none; }
+.abstract > summary::before {
+  content: "+";
+  font-size: .85rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.abstract[open] > summary::before { content: "–"; }
+.abstract > summary:hover { color: var(--ink); }
+.abstract > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+.abstract-text {
+  font-size: .95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: .7rem 0 0;
+  padding-left: .95rem;
+  border-left: 2px solid var(--accent-soft);
+}
+
 /* ---------- compact bibliographic list (policy papers) ---------- */
 .works.compact > .entry { padding: 1.05rem 0; }
 .ref { margin: 0; font-size: 1rem; line-height: 1.5; }
@@ -261,6 +347,24 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
   .section-body, .colophon p { grid-column: 1; }
   .portrait { width: 130px; height: 160px; }
 
+  /* Brand + hamburger replace the inline links. */
+  .jump-brand, .jump-toggle { display: block; }
+  .jump-toggle { display: flex; flex-direction: column; }
+
+  .jump-inner { flex-wrap: wrap; }
+  .jump-links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: .6rem;
+  }
+  .jump-links.is-open { display: flex; }
+  .jump-links a {
+    padding: .78rem 0;
+    border-top: 1px solid var(--rule);
+  }
+
   .section-label {
     margin: 0 0 .9rem;
     padding-bottom: .5rem;
@@ -276,6 +380,9 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
   }
   .vintage .year, .vintage .status { display: inline; margin: 0; }
 }
+
+/* Anchors must clear the sticky bar when jumped to. */
+.section { scroll-margin-top: 4.25rem; }
 </style>
 </head>
 
@@ -292,7 +399,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
         <strong>Professor of Economics</strong>, <a href="https://www.vwl.uni-rostock.de/personen/professuren-i/angewandte-wirtschaftsforschung-prof-dr-aleksandar-zaklan/team/prof-dr-aleksandar-zaklan/">University of Rostock</a>
       </p>
       <ul class="channels">
-        <li><a href="mailto:aleksandar.zaklan@uni-rostock.de">E-Mail</a></li>
+        <li><a href="mailto:aleksandar.zaklan@uni-rostock.de">Email</a></li>
         <li><a href="cv_zaklan.pdf">CV (PDF)</a></li>
         <li><a href="https://scholar.google.de/citations?user=eZ-GZakAAAAJ&amp;hl=en">Google Scholar</a></li>
         <li><a href="https://ideas.repec.org/e/pza179.html">IDEAS/RePEc</a></li>
@@ -303,10 +410,20 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
     <img class="portrait" src="photo.jpg" alt="Aleksandar Zaklan" onerror="this.style.display='none'">
   </header>
 
+  <!-- Sticky navigation. On phones the links collapse behind the ☰ button. -->
   <nav class="jump">
-    <a href="#about">About</a>
-    <a href="#progress">Research</a>
-    <a href="#policy">Policy papers</a>
+    <div class="jump-inner">
+      <span class="jump-brand">A. Zaklan</span>
+      <button class="jump-toggle" id="navToggle" type="button"
+              aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="jump-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#progress">Research</a>
+        <a href="#policy">Policy papers</a>
+      </div>
+    </div>
   </nav>
 
   <!-- ============================================================
@@ -381,6 +498,10 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1007/s10640-024-00929-z">Effectiveness and Heterogeneous Effects of Purchase Grants for Electric Vehicles: Evidence from Germany</a></h3>
           <p class="byline">with Peter Haan and Adrián Santonja</p>
           <p class="venue"><em>Environmental and Resource Economics</em> 88, 185–223.</p>
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">We evaluate German purchase subsidies for battery electric vehicles (BEVs) and plug-in hybrid electric vehicles (PHEVs) using data on new vehicle registrations in Germany during 2015–2022. We account for confounding time trends and interacting EU-level CO2 standards using neighboring countries as a control group. We find that 40% of BEV and 25% of PHEV registrations were subsidy-induced. The program had strong distributional effects, with greater uptake in wealthier and greener counties. We estimate implied abatement costs of 870 euro per ton of CO2 for BEVs and 2,470 euro for PHEVs, suggesting that policy makers should re-balance support schemes away from PHEVs.</p>
+          </details>
         </div>
       </li>
 
@@ -390,6 +511,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1016/j.jpubeco.2023.105014">The Air Quality and Well-Being Effects of Low Emission Zones</a></h3>
           <p class="byline">with Luis Sarmiento and Nicole Wägner</p>
           <p class="venue"><em>Journal of Public Economics</em> 227, 105014.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -398,6 +526,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
         <div>
           <h3 class="work-title"><a href="https://doi.org/10.1257/pol.20210028">Coase and Cap-and-Trade: Evidence on the Independence Property from the European Carbon Market</a></h3>
           <p class="venue"><em>American Economic Journal: Economic Policy</em> 15(2), 526–558.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -407,6 +542,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1007/s11142-021-09611-x">The Impact of Carbon Disclosure Mandates on Emissions and Financial Operating Performance</a></h3>
           <p class="byline">with Benedikt Downar, Jürgen Ernstberger, Stefan Reichelstein and Sebastian Schwenen</p>
           <p class="venue"><em>Review of Accounting Studies</em> 26, 1137–1175.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -416,6 +558,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1080/14693062.2021.1878999">The EU ETS to 2030 and Beyond: Adjusting the Cap in Light of the 1.5C Target and Current Energy Policies</a></h3>
           <p class="byline">with Jakob Wachsmuth and Vicki Duscha</p>
           <p class="venue"><em>Climate Policy</em> 21(6), 778–791.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -425,6 +574,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1016/j.jeem.2018.11.004">Does the EU ETS Cause Carbon Leakage in European Manufacturing?</a></h3>
           <p class="byline">with Helene Naegele</p>
           <p class="venue"><em>Journal of Environmental Economics and Management</em> 93, 125–147.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -433,6 +589,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
         <div>
           <h3 class="work-title"><a href="https://www.iaee.org/energyjournal/article/3184">Book Review: Research Handbook on Emissions Trading, by Stefan Weishaar (ed.)</a></h3>
           <p class="venue"><em>The Energy Journal</em> 39(5).</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -442,6 +605,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1093/reep/rev014">The EU ETS: Ten Years and Counting</a></h3>
           <p class="byline">with Denny Ellerman and Claudio Marcantonini</p>
           <p class="venue"><em>Review of Environmental Economics and Policy</em> 10(1), 89–107.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -451,6 +621,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1016/j.eneco.2016.07.022">Stationarity Changes in Long-Run Energy Commodity Prices</a></h3>
           <p class="byline">with Jan Abrell and Anne Neumann</p>
           <p class="venue"><em>Energy Economics</em> 59, 96–103.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -460,6 +637,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1016/j.eneco.2011.03.001">The Globalization of Steam Coal Markets and the Role of Logistics: An Empirical Analysis</a></h3>
           <p class="byline">with Astrid Cullman, Anne Neumann and Christian von Hirschhausen</p>
           <p class="venue"><em>Energy Economics</em> 34(1), 105–116.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -469,6 +653,13 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
           <h3 class="work-title"><a href="https://doi.org/10.1093/rof/rfq016">The External Financing of Emerging Market Countries: Evidence from Two Waves of Financial Globalization</a></h3>
           <p class="byline">with André Faria and Paolo Mauro</p>
           <p class="venue"><em>Review of Finance</em> 15(1), 207–243.</p>
+          <!-- ABSTRACT (inactive). To switch on: delete this line and the
+               matching closing line below, then paste your abstract.
+          <details class="abstract">
+            <summary>Abstract</summary>
+            <p class="abstract-text">Paste the abstract here.</p>
+          </details>
+          -->
         </div>
       </li>
 
@@ -615,5 +806,38 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
   </footer>
 
 </main>
+<script>
+// Mobile menu toggle. Nothing here runs on desktop, where the links are
+// always visible; the button itself is hidden by CSS above 640px.
+(function () {
+  var btn = document.getElementById('navToggle');
+  var panel = document.getElementById('navLinks');
+  if (!btn || !panel) return;
+
+  function setOpen(open) {
+    panel.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  btn.addEventListener('click', function () {
+    setOpen(btn.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Close after tapping a link, so the panel doesn't cover the target.
+  panel.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') setOpen(false);
+  });
+
+  // Escape closes it too.
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setOpen(false);
+  });
+
+  // If the window is widened to desktop while the panel is open, reset it.
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 640) setOpen(false);
+  });
+})();
+</script>
 </body>
 </html>

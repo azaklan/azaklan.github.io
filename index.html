@@ -271,6 +271,22 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
   color: var(--accent);
 }
 
+/* Work in progress: the status matters more than the date, so the two lines
+   swap places (in the HTML) and swap emphasis (here). Each piece of text
+   stays in the class that describes it. */
+.vintage-flip .status {
+  margin-top: 0;
+  font-size: .75rem;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+.vintage-flip .year {
+  margin-top: .12rem;
+  font-size: .68rem;
+  letter-spacing: .03em;
+  color: var(--accent);
+}
+
 .work-title {
   font-family: var(--serif);
   font-size: 1.0625rem;
@@ -457,19 +473,15 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
     <ol class="works">
 
       <li class="entry">
-        <div class="vintage"><span class="year">Working paper</span><span class="status">May 2026</span></div>
+        <div class="vintage vintage-flip"><span class="status">Working paper</span><span class="year">May 2026</span></div>
         <div>
           <h3 class="work-title"><a href="https://edoc.unibas.ch/server/api/core/bitstreams/c6b5931e-0ae4-4659-96e2-eb5e1b2e1467/content">Cost Pass-Through in European Power Generation</a></h3>
           <p class="byline">with Jan Abrell</p>
-          <details class="abstract">
-            <summary>Abstract</summary>
-            <p class="abstract-text"> Abstract text.</p>
-          </details>
         </div>
       </li>
 
       <li class="entry">
-        <div class="vintage"><span class="year">In progress</span></div>
+        <div class="vintage"><span class="year">—</span></div>
         <div>
           <h3 class="work-title">Carbon Cost Pass-Through in European Aviation</h3>
           <p class="byline">with Xavier Fageda, Adrián Santonja and Jordi Teixidó</p>
@@ -477,7 +489,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
       </li>
 
       <li class="entry">
-        <div class="vintage"><span class="year">In progress</span></div>
+        <div class="vintage"><span class="year">—</span></div>
         <div>
           <h3 class="work-title">Congestion Pricing and Well-Being</h3>
           <p class="byline">with Philipp Lorscheider</p>
@@ -485,7 +497,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
       </li>
 
       <li class="entry">
-        <div class="vintage"><span class="year">Working paper</span><span class="status">Mar 2021</span></div>
+        <div class="vintage vintage-flip"><span class="status">Working paper</span><span class="year">Mar 2021</span></div>
         <div>
           <h3 class="work-title"><a href="https://www.econstor.eu/bitstream/10419/233049/1/1754731600.pdf">The Impact of ECB Corporate Sector Purchases on European Green Bonds</a></h3>
           <p class="byline">with Franziska Bremus, Fangfang Qiu and Franziska Schütze</p>
@@ -516,7 +528,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
       </li>
 
       <li class="entry">
-        <div class="vintage"><span class="year">2023</span><span class="status">JPubE</span></div>
+        <div class="vintage"><span class="year">2023</span><span class="status">J. Public Econ.</span></div>
         <div>
           <h3 class="work-title"><a href="https://doi.org/10.1016/j.jpubeco.2023.105014">The Air Quality and Well-Being Effects of Low Emission Zones</a></h3>
           <p class="byline">with Luis Sarmiento and Nicole Wägner</p>
@@ -547,7 +559,7 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
       </li>
 
       <li class="entry">
-        <div class="vintage"><span class="year">2021</span><span class="status">Rev. Account. Stud.</span></div>
+        <div class="vintage"><span class="year">2021</span><span class="status">Rev. Acc. Stud.</span></div>
         <div>
           <h3 class="work-title"><a href="https://doi.org/10.1007/s11142-021-09611-x">The Impact of Carbon Disclosure Mandates on Emissions and Financial Operating Performance</a></h3>
           <p class="byline">with Benedikt Downar, Jürgen Ernstberger, Stefan Reichelstein and Sebastian Schwenen</p>

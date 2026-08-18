@@ -351,7 +351,9 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
   .page { padding: 2.75rem 1.35rem 4rem; }
   .section, .entry, .colophon { grid-template-columns: 1fr; }
   .section-body, .colophon p { grid-column: 1; }
-  .portrait { max-width: 8rem; margin: 0 0 1.25rem; }
+  /* Mobile photo size is set here, independently of the desktop size
+     (which follows --rail). Change this number alone to resize on phones. */
+  .portrait { max-width: 11rem; margin: 0 0 1.25rem; }
 
   /* Brand + hamburger replace the inline links. */
   .jump-brand, .jump-toggle { display: block; }
